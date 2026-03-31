@@ -1,0 +1,39 @@
+name: rental_mobil_app
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # HTTP requests ke Laravel API
+  http: ^1.1.0
+  
+  # Simpan token login
+  shared_preferences: ^2.2.0
+  
+  # Navigasi antar halaman
+  go_router: ^12.0.0
+  
+  # State management
+  provider: ^6.1.0
+  
+  # Tampilkan gambar dari internet
+  cached_network_image: ^3.3.0
+  
+  # Date picker
+  table_calendar: ^3.0.9
+  
+  # Format mata uang
+  intl: ^0.18.0
+  
+  # Rating bintang
+  flutter_rating_bar: ^4.0.1
+  
+  # Upload gambar
+  image_picker: ^1.0.4

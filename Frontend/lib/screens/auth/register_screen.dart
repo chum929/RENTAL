@@ -153,7 +153,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const Text('Kota', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),
                     const SizedBox(height: 6),
                     DropdownButtonFormField<int>(
-                      value: _selectedCityId,
+                      initialValue: _selectedCityId,
                       hint: const Text('Pilih kota'),
                       decoration: _inputDeco(),
                       items: _cities.map((c) => DropdownMenuItem(

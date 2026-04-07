@@ -119,7 +119,7 @@ class _AddCarScreenState extends State<AddCarScreen> {
             const Text('Tipe Mobil', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),
             const SizedBox(height: 6),
             DropdownButtonFormField<String>(
-              value: _type,
+              initialValue: _type,
               decoration: _deco(),
               items: _types.map((t) => DropdownMenuItem(value: t, child: Text(t))).toList(),
               onChanged: (v) => setState(() => _type = v!),
@@ -133,7 +133,7 @@ class _AddCarScreenState extends State<AddCarScreen> {
                   const Text('Tahun', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),
                   const SizedBox(height: 6),
                   DropdownButtonFormField<int>(
-                    value: _year,
+                    initialValue: _year,
                     decoration: _deco(),
                     items: List.generate(15, (i) => DateTime.now().year - i)
                         .map((y) => DropdownMenuItem(value: y, child: Text('$y'))).toList(),
@@ -147,7 +147,7 @@ class _AddCarScreenState extends State<AddCarScreen> {
                   const Text('Jumlah Kursi', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),
                   const SizedBox(height: 6),
                   DropdownButtonFormField<int>(
-                    value: _seats,
+                    initialValue: _seats,
                     decoration: _deco(),
                     items: [2, 4, 5, 6, 7, 8, 9, 10, 12]
                         .map((s) => DropdownMenuItem(value: s, child: Text('$s kursi'))).toList(),

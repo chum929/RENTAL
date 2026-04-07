@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../models/booking_model.dart';
 import '../../services/booking_service.dart';
-import '../../config/api_config.dart';
 import 'review_screen.dart';
 
 class BookingDetailScreen extends StatefulWidget {

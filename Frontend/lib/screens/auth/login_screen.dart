@@ -18,29 +18,37 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _obscurePass   = true;
   String? _errorMsg;
 
+  
   Future<void> _login() async {
-    setState(() => _errorMsg = null);
+  setState(() => _errorMsg = null);
 
-    final auth   = context.read<AuthProvider>();
-    final result = await auth.login(_emailCtrl.text, _passwordCtrl.text);
+  final auth   = context.read<AuthProvider>();
+  final result = await auth.login(_emailCtrl.text, _passwordCtrl.text);
 
-    if (!mounted) return;
+  if (!mounted) return;
 
-    if (result['success']) {
-      // Arahkan ke halaman sesuai role
-      if (auth.isOwner) {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const OwnerHomeScreen()));
-      } else {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const HomeScreen()));
-      }
+  if (result['success']) {
+    final role = auth.user?.role;  // ← ambil role dari user
+
+    if (role == 'owner') {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const OwnerHomeScreen()),
+      );
+    } else if (role == 'user') {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const HomeScreen()),
+      );
     } else {
-      setState(() {
-        _errorMsg = result['message'] ?? 'Login gagal. Coba lagi.';
-      });
+      setState(() => _errorMsg = 'Role tidak dikenali.');
     }
+  } else {
+    setState(() {
+      _errorMsg = result['message'] ?? 'Login gagal. Coba lagi.';
+    });
   }
+}
 
   @override
   Widget build(BuildContext context) {

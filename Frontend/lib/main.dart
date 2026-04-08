@@ -59,28 +59,34 @@ class _SplashRouterState extends State<SplashRouter> {
   }
 
   Future<void> _checkAuth() async {
-    final auth = context.read<AuthProvider>();
-    await auth.checkAuth();
+  final auth = context.read<AuthProvider>();
+  await auth.checkAuth();
 
-    if (!mounted) return;
+  if (!mounted) return;
 
-    if (!auth.isLoggedIn) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const LoginScreen()),
-      );
-    } else if (auth.isOwner) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const OwnerHomeScreen()),
-      );
-    } else {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const HomeScreen()),
-      );
-    }
+  if (!auth.isLoggedIn) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const LoginScreen()),
+    );
+  } else if (auth.user?.role == 'owner') {  // ← cek role owner dulu
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const OwnerHomeScreen()),
+    );
+  } else if (auth.user?.role == 'user') {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const HomeScreen()),
+    );
+  } else {
+    // role lain (admin dll) → ke login
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const LoginScreen()),
+    );
   }
+}
 
   @override
   Widget build(BuildContext context) {
